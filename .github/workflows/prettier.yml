@@ -6,8 +6,15 @@ jobs:
   prettier-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: the-guild-org/shared-config/setup@main
+        name: setup env
+        with:
+          packageManager: pnpm
+          workingDirectory: ./
+
       - name: Install Dependencies
-        run: yarn
+        run: pnpm i
       - name: Run Prettier Check
-        run: yarn format:check
+        run: pnpm format:check
